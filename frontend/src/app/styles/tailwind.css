@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
 @import 'tailwindcss';
 
 @theme {
@@ -27,5 +26,16 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+  }
+}
+
+@layer utilities {
+  .auth-bg {
+    background: radial-gradient(
+      circle at top,
+      color-mix(in srgb, var(--color-brand-primary) 35%, var(--color-brand-dark)) 0%,
+      var(--color-brand-dark) 42%,
+      var(--color-brand-black) 100%
+    );
   }
 }
