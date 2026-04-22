@@ -4,9 +4,7 @@
 
 <template>
   <div class="p-8 text-center text-brand-dark space-y-4">
-    <h1 class="text-4xl font-bold font-accent text-brand-primary">
-      Frontend Initialized
-    </h1>
+    <h1 class="text-4xl font-bold font-accent text-brand-primary">Frontend Initialized</h1>
     <p class="text-brand-gray text-lg font-main">
       Vite + Vue 3 + TS + TailwindCSS v4 + FSD Architecture
     </p>

@@ -1,17 +1,14 @@
-import {
-  VueQueryPlugin,
-  type VueQueryPluginOptions,
-} from "@tanstack/vue-query";
+import { VueQueryPlugin, type VueQueryPluginOptions } from '@tanstack/vue-query'
 
 export const queryClientOptions: VueQueryPluginOptions = {
   queryClientConfig: {
     defaultOptions: {
       queries: {
         refetchOnWindowFocus: false,
-        retry: 1,
-      },
-    },
-  },
-};
+        retry: 1
+      }
+    }
+  }
+}
 
-export const queryPlugin = VueQueryPlugin;
+export const queryPlugin = VueQueryPlugin

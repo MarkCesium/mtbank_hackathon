@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   --color-brand-primary: #0021f3;
@@ -8,9 +8,9 @@
   --color-brand-white: #ffffff;
   --color-brand-black: #010615;
 
-  --font-accent: "Playfair Display", serif;
-  --font-main: "Montserrat", sans-serif;
-  --font-digital: "Verdana", sans-serif;
+  --font-accent: 'Playfair Display', serif;
+  --font-main: 'Montserrat', sans-serif;
+  --font-digital: 'Verdana', sans-serif;
 }
 
 @layer base {
