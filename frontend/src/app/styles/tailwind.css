@@ -28,3 +28,14 @@
     flex-direction: column;
   }
 }
+
+@layer utilities {
+  .auth-bg {
+    background: radial-gradient(
+      circle at top,
+      color-mix(in srgb, var(--color-brand-primary) 35%, var(--color-brand-dark)) 0%,
+      var(--color-brand-dark) 42%,
+      var(--color-brand-black) 100%
+    );
+  }
+}
