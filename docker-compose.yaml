@@ -25,6 +25,15 @@ services:
     networks:
       - app-net
 
+  frontend:
+    container_name: frontend
+    image: frontend
+    depends_on:
+      - backend
+    networks:
+      - app-net
+
+
 networks:
   app-net:
     driver: bridge
