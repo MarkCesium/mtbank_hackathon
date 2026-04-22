@@ -15,6 +15,9 @@ dependencies = [
     "pydantic-settings",
     "orjson",
     "hypercorn",
+    "pyjwt>=2.12.1",
+    "python-multipart>=0.0.26",
+    "bcrypt>=5.0.0",
 ]
 
 [dependency-groups]

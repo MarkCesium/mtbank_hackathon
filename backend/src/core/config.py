@@ -36,17 +36,25 @@ class PostgresConfig(BaseModel):
     pool_timeout: int = Field(default=30)
 
 
+class JWTConfig(BaseModel):
+    secret: str
+    algorithm: str = "HS256"
+    access_token_expire_minutes: int = 15
+    refresh_token_expire_days: int = 30
+
+
 class AppConfig(BaseModel):
-    debug: bool = Field(default=False)
+    debug: bool = Field(default=True)
     generate_openapi_file: bool = Field(default=True)
     openapi_file_path: str = Field(default="var/app/openapi.json")
     allowed_origins: list[str] = Field(default=["http://localhost"])
 
 
 class Settings(BaseSettings):
-    app: AppConfig = Field(...)
-    logging: LoggingConfig = Field(...)
+    app: AppConfig = Field(default_factory=AppConfig)
+    logging: LoggingConfig = Field(default_factory=LoggingConfig)
     database: PostgresConfig = Field(...)
+    jwt: JWTConfig = Field(...)
 
     class Config:
         env_file = BASE_DIR / ".env"

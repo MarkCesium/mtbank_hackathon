@@ -9,6 +9,12 @@ class NotFoundError(AppError):
         super().__init__(message)
 
 
-class ValidationError(AppError):
-    def __init__(self, message: str = "Validation error"):
+
+class AlreadyExistsError(AppError):
+    def __init__(self, message: str = "Resource already exists"):
+        super().__init__(message)
+
+
+class InvalidCredentialsError(AppError):
+    def __init__(self, message: str = "Invalid credentials"):
         super().__init__(message)

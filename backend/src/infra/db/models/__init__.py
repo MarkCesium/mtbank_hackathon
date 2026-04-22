@@ -1,3 +1,9 @@
 from .base import Base
+from .refresh_token import RefreshToken
+from .user import User
 
-__all__ = ("Base",)
+__all__ = (
+    "Base",
+    "RefreshToken",
+    "User",
+)
