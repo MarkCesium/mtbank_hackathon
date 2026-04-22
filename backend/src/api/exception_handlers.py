@@ -5,6 +5,7 @@ from fastapi.responses import JSONResponse
 
 from src.core.exceptions import (
     AlreadyExistsError,
+    DailyLimitExceededError,
     InvalidCredentialsError,
     NotFoundError,
 )
@@ -30,11 +31,20 @@ def register_exception_handlers(app: FastAPI) -> None:
             content={"detail": exc.message},
         )
 
-
     @app.exception_handler(NotFoundError)
     async def not_found_handler(request: Request, exc: NotFoundError) -> JSONResponse:
         return JSONResponse(
             status_code=404,
+            content={"detail": exc.message},
+        )
+
+    @app.exception_handler(DailyLimitExceededError)
+    async def daily_limit_handler(
+        request: Request,
+        exc: DailyLimitExceededError,
+    ) -> JSONResponse:
+        return JSONResponse(
+            status_code=429,
             content={"detail": exc.message},
         )
 

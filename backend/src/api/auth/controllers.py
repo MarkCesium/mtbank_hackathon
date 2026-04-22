@@ -64,4 +64,6 @@ async def get_me(
         user_id=user.id,
         username=user.username,
         email=user.email,
+        bonus=user.bonus,
+        attempts_remaining=user.attempts_remaining,
     )

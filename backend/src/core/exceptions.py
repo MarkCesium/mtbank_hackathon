@@ -9,7 +9,6 @@ class NotFoundError(AppError):
         super().__init__(message)
 
 
-
 class AlreadyExistsError(AppError):
     def __init__(self, message: str = "Resource already exists"):
         super().__init__(message)
@@ -17,4 +16,9 @@ class AlreadyExistsError(AppError):
 
 class InvalidCredentialsError(AppError):
     def __init__(self, message: str = "Invalid credentials"):
+        super().__init__(message)
+
+
+class DailyLimitExceededError(AppError):
+    def __init__(self, message: str = "Daily attempts limit exceeded"):
         super().__init__(message)

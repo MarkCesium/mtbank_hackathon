@@ -18,6 +18,7 @@ from src.core.security import (
 )
 from src.core.types import IDType
 from src.infra.db.uow import UnitOfWork
+from src.services.game import DAILY_LIMIT
 
 logger = logging.getLogger(__name__)
 
@@ -85,13 +86,29 @@ class AuthService:
         user = await self.uow.user_repository.get_by_id(UUID(user_id))
         if not user:
             raise NotFoundError("User not found")
-        return UserDTO(id=user.id, username=user.username, email=user.email)
+        today = datetime.now(UTC).date()
+        used = user.game_attempts_used if user.game_attempts_reset_date == today else 0
+        return UserDTO(
+            id=user.id,
+            username=user.username,
+            email=user.email,
+            bonus=user.bonus,
+            attempts_remaining=DAILY_LIMIT - used,
+        )
 
     async def get_user_by_email(self, email: str) -> UserDTO:
         user = await self.uow.user_repository.get_one_or_none(email=email)
         if not user:
             raise NotFoundError("User not found")
-        return UserDTO(id=user.id, username=user.username, email=user.email)
+        today = datetime.now(UTC).date()
+        used = user.game_attempts_used if user.game_attempts_reset_date == today else 0
+        return UserDTO(
+            id=user.id,
+            username=user.username,
+            email=user.email,
+            bonus=user.bonus,
+            attempts_remaining=DAILY_LIMIT - used,
+        )
 
     async def validate_token(self, access_token: str) -> TokenClaims:
         return decode_access_token(access_token, self.jwt_config)

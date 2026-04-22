@@ -1,3 +1,4 @@
+from decimal import Decimal
 from uuid import UUID
 
 from pydantic import BaseModel
@@ -30,6 +31,8 @@ class UserResponse(BaseModel):
     user_id: UUID
     username: str
     email: str
+    bonus: Decimal
+    attempts_remaining: int
 
 
 class SendOtpRequest(BaseModel):
