@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div class="min-h-screen bg-brand-white flex items-center justify-center">
+  <div class="min-h-screen bg-brand-dark flex items-center justify-center">
     <p class="text-brand-gray text-lg font-main">Главная страница</p>
   </div>
 </template>
