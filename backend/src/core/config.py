@@ -47,7 +47,7 @@ class AppConfig(BaseModel):
     debug: bool = Field(default=True)
     generate_openapi_file: bool = Field(default=True)
     openapi_file_path: str = Field(default="var/app/openapi.json")
-    allowed_origins: list[str] = Field(default=["http://localhost"])
+    allowed_origins: list[str] = Field(default=["*"])
 
 
 class Settings(BaseSettings):
