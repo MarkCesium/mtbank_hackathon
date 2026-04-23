@@ -3,6 +3,7 @@ import { useRouter } from 'vue-router'
 import { useQuery } from '@tanstack/vue-query'
 import { authApi } from '@/shared/api/auth'
 import { useUserStore } from '@/entities/user'
+import { BattlePassCarousel } from '@/features/battlepass'
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -65,6 +66,8 @@ function logout() {
           </span>
         </div>
       </div>
+
+      <BattlePassCarousel class="w-full mt-2" />
 
       <div class="flex flex-col items-center gap-3 mt-4">
         <h2 class="text-brand-white font-accent text-4xl">BlockBust</h2>

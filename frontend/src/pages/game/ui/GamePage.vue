@@ -5,6 +5,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/vue-query'
 import { authApi } from '@/shared/api/auth'
 import { gameApi, type FinishAttemptResponse } from '@/shared/api/game'
 import { useGame, VictoryModal } from '@/features/blockbust'
+import { BATTLEPASS_QUERY_KEY } from '@/features/battlepass'
 import { WIN_SCORE } from '@/entities/game'
 import { GameBoard } from '@/widgets/game-board'
 import { useUserStore } from '@/entities/user'
@@ -66,6 +67,7 @@ const finishMutation = useMutation({
       userStore.setUser(updated)
       queryClient.setQueryData(['auth', 'me'], updated)
     }
+    queryClient.invalidateQueries({ queryKey: BATTLEPASS_QUERY_KEY })
     finishing.value = false
   },
   onError: () => {
