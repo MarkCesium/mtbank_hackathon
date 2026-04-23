@@ -19,6 +19,8 @@ export interface UserResponse {
   user_id: string
   username: string
   email: string
+  bonus: string
+  attempts_remaining: number
 }
 
 export const authApi = {
