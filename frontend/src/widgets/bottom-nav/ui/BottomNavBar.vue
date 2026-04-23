@@ -23,7 +23,7 @@ function isActive(path: string): boolean {
         v-for="item in navItems"
         :key="item.to"
         :to="item.to"
-        class="flex flex-col items-center gap-1 px-4 py-1 rounded-xl transition-colors"
+        class="flex flex-col items-center gap-1 px-4 py-1 rounded-xl transition-colors transition-transform duration-100 active:scale-90"
         :class="isActive(item.to) ? 'text-brand-primary' : 'text-brand-dark/40'"
       >
         <component :is="item.icon" class="w-5 h-5" />

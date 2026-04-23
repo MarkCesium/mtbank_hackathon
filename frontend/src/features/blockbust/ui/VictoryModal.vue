@@ -17,7 +17,7 @@ const emit = defineEmits<{
 <template>
   <div class="fixed inset-0 z-40 bg-black/70 flex items-center justify-center p-4">
     <div
-      class="bg-brand-white rounded-2xl max-w-sm w-full p-6 flex flex-col items-center gap-4 shadow-2xl"
+      class="bg-brand-white rounded-2xl max-w-sm w-full p-6 flex flex-col items-center gap-4 shadow-2xl modal-card"
     >
       <h2
         v-if="status === 'won'"
@@ -56,3 +56,20 @@ const emit = defineEmits<{
     </div>
   </div>
 </template>
+
+<style scoped>
+.modal-card {
+  animation: card-in 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: scale(0.88) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+</style>

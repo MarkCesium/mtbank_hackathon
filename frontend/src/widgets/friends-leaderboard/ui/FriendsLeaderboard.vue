@@ -38,9 +38,10 @@ const hasOnlyCurrentUser = (entries: LeaderboardEntry[]) =>
       </p>
 
       <div
-        v-for="entry in data.entries"
+        v-for="(entry, index) in data.entries"
         :key="entry.user_id"
-        class="flex items-center bg-brand-white gap-3 px-4 py-3 rounded-2xl transition"
+        class="flex items-center bg-brand-white gap-3 px-4 py-3 rounded-2xl transition stagger-item"
+        :style="{ animationDelay: `${index * 50}ms` }"
       >
         <span class="text-brand-dark/40 font-main text-sm w-5 text-center shrink-0">
           {{ entry.rank }}
@@ -63,3 +64,20 @@ const hasOnlyCurrentUser = (entries: LeaderboardEntry[]) =>
     </template>
   </div>
 </template>
+
+<style scoped>
+.stagger-item {
+  animation: stagger-in 0.2s ease-out both;
+}
+
+@keyframes stagger-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>

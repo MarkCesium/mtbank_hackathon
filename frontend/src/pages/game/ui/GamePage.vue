@@ -187,14 +187,27 @@ const showModal = computed(
 
     <GameBoard v-else :game="game" class="flex-1 w-full max-w-md" />
 
-    <VictoryModal
-      v-if="showModal && finishResult"
-      :status="game.status.value === 'won' ? 'won' : 'lost'"
-      :score="game.score.value"
-      :awarded="finishResult.awarded"
-      :can-retry="finishResult.attempts_remaining > 0"
-      @retry="retry"
-      @exit="goHome"
-    />
+    <Transition name="victory">
+      <VictoryModal
+        v-if="showModal && finishResult"
+        :status="game.status.value === 'won' ? 'won' : 'lost'"
+        :score="game.score.value"
+        :awarded="finishResult.awarded"
+        :can-retry="finishResult.attempts_remaining > 0"
+        @retry="retry"
+        @exit="goHome"
+      />
+    </Transition>
   </div>
 </template>
+
+<style scoped>
+.victory-enter-active,
+.victory-leave-active {
+  transition: opacity 0.2s ease;
+}
+.victory-enter-from,
+.victory-leave-to {
+  opacity: 0;
+}
+</style>
