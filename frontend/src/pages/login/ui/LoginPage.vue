@@ -7,7 +7,7 @@ import { AuthLayout } from '@/shared/ui/layouts'
   <AuthLayout footer-link-to="/register" footer-link-text="Зарегистрироваться">
     <template #header>
       <h2 class="font-accent text-xl sm:text-2xl font-semibold text-brand-black">Вход в аккаунт</h2>
-      <p class="text-brand-gray text-xs sm:text-sm mt-1">Введите данные для входа</p>
+      <p class="text-brand-black text-xs sm:text-sm mt-1">Введите данные для входа</p>
     </template>
 
     <template #form>

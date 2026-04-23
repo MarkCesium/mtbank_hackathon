@@ -25,8 +25,8 @@ defineProps<Props>()
 
       <slot name="form" />
 
-      <p class="text-center text-xs sm:text-sm text-brand-gray mt-6">
-        <slot name="footer-link-prefix" />
+      <p class="text-center text-xs sm:text-sm text-brand-black mt-6">
+        <slot name="footer-link-prefix"/>
         <RouterLink
           :to="footerLinkTo"
           class="text-brand-primary font-medium hover:underline ml-1 inline-block mt-1 sm:mt-0"
