@@ -4,7 +4,6 @@ import { useQuery } from '@tanstack/vue-query'
 import { authApi } from '@/shared/api/auth'
 import { useUserStore } from '@/entities/user'
 import { BattlePassCarousel } from '@/features/battlepass'
-import { AppHeader } from '@/widgets/app-header'
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -24,14 +23,11 @@ function goGame() {
 </script>
 
 <template>
-  <div class="min-h-[100dvh] bg-brand-gray flex flex-col items-center p-6 pb-[88px]">
-    <header class="w-full max-w-md flex flex-col gap-4">
-      <AppHeader />
-      <BattlePassCarousel class="w-full" />
-    </header>
+  <div class="flex-1 w-full flex flex-col gap-4">
+    <BattlePassCarousel class="w-full" />
 
     <main
-      class="flex-1 w-full max-w-md flex flex-col items-center justify-center gap-6 text-center"
+      class="flex-1 w-full flex flex-col items-center justify-center gap-6 text-center"
     >
       <div
         class="bg-brand-white rounded-2xl p-5 w-full flex items-center justify-around shadow-sm"
