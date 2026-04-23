@@ -30,10 +30,10 @@ class PostgresConfig(BaseModel):
     url: PostgresDsn = Field(...)
     echo: bool = Field(default=False)
     echo_pool: bool = Field(default=False)
-    pool_size: int = Field(default=10)
-    max_overflow: int = Field(default=5)
+    pool_size: int = Field(default=8)
+    max_overflow: int = Field(default=2)
     pool_pre_ping: bool = Field(default=True)
-    pool_timeout: int = Field(default=30)
+    pool_timeout: int = Field(default=10)
 
 
 class JWTConfig(BaseModel):

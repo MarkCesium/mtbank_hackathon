@@ -28,4 +28,4 @@ ENTRYPOINT []
 
 USER nonroot
 
-CMD ["sh", "-c", "alembic upgrade head && hypercorn src.main:app --bind ::"]
+CMD ["sh", "-c", "alembic upgrade head && hypercorn src.main:app --bind [::]:8000 --workers 9"]
