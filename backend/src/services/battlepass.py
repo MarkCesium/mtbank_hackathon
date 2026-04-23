@@ -80,7 +80,9 @@ class BattlepassService:
         if day in activated_days:
             return "completed"
         if day < today_day:
-            return "missed"
+            if activated_days and day > min(activated_days):
+                return "missed"
+            return "completed"
         if is_frozen:
             return "locked"
         if day == today_day:

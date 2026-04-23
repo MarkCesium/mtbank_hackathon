@@ -30,8 +30,8 @@ const stateClasses = computed(() => {
 })
 
 const ringClass = computed(() => {
-  if (isGrandPrize(props.day.reward_type)) return 'ring-2 ring-yellow-400/80'
-  if (isMilestone(props.day.reward_type)) return 'ring-2 ring-brand-secondary/40'
+  if (isGrandPrize(props.day.reward_type)) return 'ring-2 ring-inset ring-yellow-400/80'
+  if (isMilestone(props.day.reward_type)) return 'ring-2 ring-inset ring-brand-secondary/50'
   return ''
 })
 

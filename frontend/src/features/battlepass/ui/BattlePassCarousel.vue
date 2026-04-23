@@ -11,9 +11,21 @@ const carouselRef = ref<HTMLElement | null>(null)
 const selectedDay = ref<BattlePassDay | null>(null)
 
 function scrollToToday() {
-  const el = carouselRef.value?.querySelector<HTMLElement>('[data-today="true"]')
+  const container = carouselRef.value
+  if (!container) return
+  const el = container.querySelector<HTMLElement>('[data-today="true"]')
   if (!el) return
-  el.scrollIntoView({ block: 'nearest', inline: 'center' })
+  const target = el.offsetLeft - (container.clientWidth - el.clientWidth) / 2
+  container.scrollLeft = Math.max(0, target)
+}
+
+function onWheel(e: WheelEvent) {
+  const container = carouselRef.value
+  if (!container) return
+  if (e.deltaY === 0 || e.deltaX !== 0) return
+  if (container.scrollWidth <= container.clientWidth) return
+  e.preventDefault()
+  container.scrollLeft += e.deltaY
 }
 
 onMounted(() => {
@@ -51,7 +63,8 @@ watch(
     <div
       v-else-if="state"
       ref="carouselRef"
-      class="flex gap-2 overflow-x-auto snap-x snap-mandatory pb-2 -mx-1 px-1 scrollbar-none"
+      class="flex gap-2 overflow-x-auto overscroll-x-contain snap-x snap-proximity py-2 -mx-1 px-1 scrollbar-none touch-pan-x"
+      @wheel="onWheel"
     >
       <BattlePassDayCard
         v-for="d in state.days"
