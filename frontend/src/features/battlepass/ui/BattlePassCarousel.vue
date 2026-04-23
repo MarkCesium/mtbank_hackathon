@@ -74,7 +74,7 @@ watch(
     <div
       v-else-if="state"
       ref="carouselRef"
-      class="flex items-center overflow-x-auto overscroll-x-contain snap-x snap-proximity py-2 -mx-4 px-4 scrollbar-none touch-pan-x"
+      class="flex items-center overflow-x-auto overscroll-x-contain snap-x snap-proximity py-2 -mx-4 px-4 scrollbar-none touch-[pan-x_pan-y]"
       @wheel="onWheel"
     >
       <template v-for="(d, i) in state.days" :key="d.day">

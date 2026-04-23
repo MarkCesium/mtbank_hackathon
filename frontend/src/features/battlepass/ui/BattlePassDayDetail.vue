@@ -45,7 +45,7 @@ const stateColor = computed(() => {
 
 <template>
   <div
-    class="fixed inset-0 z-40 bg-black/70 flex items-center justify-center p-4"
+    class="fixed inset-0 z-[60] bg-black/70 flex items-center justify-center p-4"
     @click.self="$emit('close')"
   >
     <div
