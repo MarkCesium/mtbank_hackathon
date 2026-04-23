@@ -49,7 +49,7 @@ const stateColor = computed(() => {
     @click.self="$emit('close')"
   >
     <div
-      class="bg-brand-white rounded-2xl max-w-sm w-full p-6 flex flex-col items-center gap-4 shadow-2xl"
+      class="modal-card bg-brand-white rounded-2xl max-w-sm w-full p-6 flex flex-col items-center gap-4 shadow-2xl"
     >
       <div class="flex items-center gap-2 text-brand-gray font-main text-sm">
         <span class="font-main text-brand-black text-xl">День</span>
@@ -86,3 +86,20 @@ const stateColor = computed(() => {
     </div>
   </div>
 </template>
+
+<style scoped>
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-card {
+  animation: card-in 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+</style>

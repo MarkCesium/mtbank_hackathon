@@ -102,11 +102,13 @@ watch(
       </div>
     </div>
 
-    <BattlePassDayDetail
-      v-if="selectedDay"
-      :day="selectedDay"
-      @close="selectedDay = null"
-    />
+    <Transition name="bp-modal">
+      <BattlePassDayDetail
+        v-if="selectedDay"
+        :day="selectedDay"
+        @close="selectedDay = null"
+      />
+    </Transition>
   </section>
 </template>
 
@@ -116,5 +118,14 @@ watch(
 }
 .scrollbar-none::-webkit-scrollbar {
   display: none;
+}
+
+.bp-modal-enter-active,
+.bp-modal-leave-active {
+  transition: opacity 0.2s ease;
+}
+.bp-modal-enter-from,
+.bp-modal-leave-to {
+  opacity: 0;
 }
 </style>
