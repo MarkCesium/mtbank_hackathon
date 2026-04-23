@@ -29,7 +29,8 @@ function onPickup(e: PointerEvent, slot: number, piece: PieceDef) {
 </script>
 
 <template>
-  <div class="w-full max-w-md mx-auto flex flex-col gap-4">
+  <div class="w-full max-w-md mx-auto flex flex-col flex-1">
+    <div class="flex-1"></div>
     <BoardGrid
       ref="boardComp"
       :board="props.game.board.value"
@@ -39,7 +40,8 @@ function onPickup(e: PointerEvent, slot: number, piece: PieceDef) {
       :clearing-cells="props.game.clearingCells.value"
       :floaters="props.game.floaters.value"
     />
-    <div class="bg-brand-dark/40 rounded-xl">
+    <div class="flex-1"></div>
+    <div class="bg-brand-white/80 rounded-xl py-2">
       <PieceTray
         :hand="props.game.hand.value"
         :dragging-slot="draggingSlot"

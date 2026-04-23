@@ -102,57 +102,50 @@ const showModal = computed(
 </script>
 
 <template>
-  <div class="min-h-[100dvh] bg-brand-dark flex flex-col items-center px-3 py-4">
+  <div class="min-h-[100dvh] bg-brand-gray flex flex-col items-center px-3 py-4">
     <header class="w-full max-w-md flex items-center justify-between mb-4">
       <button
-        class="text-brand-gray hover:text-brand-white font-main text-sm transition"
+        class="text-brand-dark/60 hover:text-brand-dark font-main text-sm transition"
         @click="goHome"
       >
         ← В меню
       </button>
-      <div class="text-brand-gray font-main text-sm">
-        Попытки: <span class="text-brand-white font-semibold">{{ attemptsRemaining }}/3</span>
-      </div>
-      <div class="text-brand-gray font-main text-sm">
+      <div class="text-brand-dark/60 font-main text-sm">
         Бонусы: <span class="text-brand-secondary font-semibold">{{ bonus }}</span>
       </div>
     </header>
 
-    <div class="w-full max-w-md mb-4">
-      <div class="flex justify-between items-baseline mb-1">
-        <span class="text-brand-white font-digital text-2xl">{{ game.score.value }}</span>
-        <span class="text-brand-gray font-main text-sm">/ {{ WIN_SCORE }}</span>
-      </div>
-      <div class="w-full h-2 bg-brand-dark/60 rounded-full overflow-hidden">
-        <div
-          class="h-full bg-brand-primary transition-all duration-300"
-          :style="{ width: `${game.progress.value}%` }"
-        ></div>
+    <div class="w-full max-w-md mb-4 text-brand-dark/60 font-main text-sm">
+      Попытки: <span class="text-brand-dark font-semibold">{{ attemptsRemaining }}/3</span>
+    </div>
+
+    <div
+      v-if="game.status.value === 'idle'"
+      class="flex-1 flex flex-col justify-center w-full max-w-md py-4"
+    >
+      <div class="bg-brand-white rounded-2xl shadow p-6 flex flex-col items-center gap-4">
+        <h1 class="text-brand-primary font-accent text-4xl">BlockBust</h1>
+        <p class="text-brand-dark font-main text-center max-w-xs">
+          Набери <span class="text-brand-dark font-semibold">1000 очков</span>, очищая ряды и
+          столбцы. За победу — <span class="text-brand-secondary font-semibold">0.05 бонусов</span>.
+        </p>
+        <p v-if="errorMsg" class="text-brand-secondary font-main text-center text-sm">
+          {{ errorMsg }}
+        </p>
+        <button
+          class="bg-brand-primary hover:bg-brand-primary/90 disabled:bg-brand-gray/40 disabled:cursor-not-allowed text-brand-white font-main font-semibold px-8 py-3 rounded-xl transition w-full"
+          :disabled="!canStart || startMutation.isPending.value"
+          @click="startMutation.mutate()"
+        >
+          {{ startMutation.isPending.value ? 'Загрузка…' : 'Начать игру' }}
+        </button>
+        <p v-if="attemptsRemaining === 0" class="text-brand-dark/40 text-xs font-main">
+          Попытки обновятся завтра.
+        </p>
       </div>
     </div>
 
-    <div v-if="game.status.value === 'idle'" class="flex flex-col items-center gap-4 mt-8">
-      <h1 class="text-brand-white font-accent text-4xl">BlockBust</h1>
-      <p class="text-brand-gray font-main text-center max-w-xs">
-        Набери <span class="text-brand-white font-semibold">1000 очков</span>, очищая ряды и
-        столбцы. За победу — <span class="text-brand-secondary font-semibold">0.05 бонусов</span>.
-      </p>
-      <p v-if="errorMsg" class="text-brand-secondary font-main text-center text-sm">
-        {{ errorMsg }}
-      </p>
-      <button
-        class="bg-brand-primary hover:bg-brand-primary/90 disabled:bg-brand-gray/40 disabled:cursor-not-allowed text-brand-white font-main font-semibold px-8 py-3 rounded-xl transition"
-        :disabled="!canStart || startMutation.isPending.value"
-        @click="startMutation.mutate()"
-      >
-        {{ startMutation.isPending.value ? 'Загрузка…' : 'Начать игру' }}
-      </button>
-      <p v-if="attemptsRemaining === 0" class="text-brand-gray text-xs font-main">
-        Попытки обновятся завтра.
-      </p>
-    </div>
-
-    <GameBoard v-else :game="game" />
+    <GameBoard v-else :game="game" class="flex-1 w-full max-w-md" />
 
     <VictoryModal
       v-if="showModal && finishResult"

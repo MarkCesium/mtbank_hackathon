@@ -40,8 +40,7 @@ const hasOnlyCurrentUser = (entries: LeaderboardEntry[]) =>
       <div
         v-for="entry in data.entries"
         :key="entry.user_id"
-        class="flex items-center gap-3 px-4 py-3 rounded-2xl transition"
-        :class="entry.is_current_user ? 'bg-brand-primary/10' : 'bg-brand-white'"
+        class="flex items-center bg-brand-white gap-3 px-4 py-3 rounded-2xl transition"
       >
         <span class="text-brand-dark/40 font-main text-sm w-5 text-center shrink-0">
           {{ entry.rank }}
@@ -57,7 +56,7 @@ const hasOnlyCurrentUser = (entries: LeaderboardEntry[]) =>
           <span v-if="entry.is_current_user" class="text-xs font-normal"> (вы)</span>
         </span>
 
-        <span class="font-digital text-brand-secondary text-base shrink-0">
+        <span class="font-digital text-brand-dark text-base shrink-0">
           {{ Number(entry.bonus).toFixed(2) }}
         </span>
       </div>

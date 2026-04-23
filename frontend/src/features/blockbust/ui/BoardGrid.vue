@@ -81,8 +81,8 @@ function cellStyle(r: number, c: number): Record<string, string> {
     }
   }
   return {
-    backgroundColor: 'rgba(255,255,255,0.04)',
-    boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.06)',
+    backgroundColor: '#ffffff',
+    boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.08)',
   }
 }
 
@@ -98,7 +98,7 @@ function floaterStyle(f: FloatingScore): Record<string, string> {
 <template>
   <div
     ref="rootEl"
-    class="relative grid gap-[2px] p-[6px] bg-brand-dark/60 rounded-xl touch-none select-none w-full"
+    class="relative grid gap-[2px] p-[6px] bg-brand-dark/[0.07] rounded-xl touch-none select-none w-full"
     :style="{
       gridTemplateColumns: `repeat(${BOARD_SIZE}, 1fr)`,
       gridTemplateRows: `repeat(${BOARD_SIZE}, 1fr)`,
