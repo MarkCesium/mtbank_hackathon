@@ -29,7 +29,7 @@ class ShopService:
                 raise NotFoundError("Товар не найден")
 
             if user.bonus < item.price:
-                raise ValidationError("Недостаточно баллов")
+                raise ValidationError("Недостаточно бонусов")
 
             new_balance = user.bonus - item.price
             await uow.user_repository.update(user_id, bonus=new_balance)

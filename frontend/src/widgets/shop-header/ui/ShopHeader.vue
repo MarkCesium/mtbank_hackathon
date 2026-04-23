@@ -25,14 +25,13 @@ const ICONS = {
         <h1 class="font-accent font-bold text-brand-white text-2xl tracking-wide leading-none">
           МАГАЗИН
         </h1>
-        <p class="font-main text-brand-white/60 text-xs mt-1">1 балл = 1 BYN</p>
       </div>
       <div class="text-right">
         <p class="font-main text-brand-white/60 text-xs uppercase tracking-wide">Мой баланс</p>
         <p class="font-digital text-brand-white font-bold text-2xl leading-tight">
           {{ userStore.user?.bonus ?? '0.00' }}
         </p>
-        <p class="font-main text-brand-white/60 text-[10px]">баллов</p>
+        <p class="font-main text-brand-white/60 text-[10px]">бонусов</p>
       </div>
     </div>
 

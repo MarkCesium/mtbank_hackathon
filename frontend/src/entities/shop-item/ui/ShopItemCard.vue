@@ -24,7 +24,7 @@ const CATEGORY_GRADIENTS: Record<string, string> = {
     <div class="mt-4 flex items-center gap-1">
       <span class="text-white/80 font-main text-xs">Б</span>
       <span class="font-digital text-white font-bold text-sm">{{ item.price }}</span>
-      <span class="font-main text-white/60 text-[10px]">баллов</span>
+      <span class="font-main text-white/60 text-[10px]">бонусов</span>
     </div>
   </button>
 </template>

@@ -30,7 +30,7 @@ defineEmits<{ click: [] }>()
     <div class="flex items-center gap-1 flex-shrink-0">
       <div class="flex flex-col items-end">
         <span class="font-digital text-brand-dark text-sm font-semibold">{{ item.price }}</span>
-        <span class="font-main text-brand-dark/50 text-[10px]">баллов</span>
+        <span class="font-main text-brand-dark/50 text-[10px]">бонусов</span>
       </div>
       <ChevronRight class="w-4 h-4 text-brand-dark/30" />
     </div>

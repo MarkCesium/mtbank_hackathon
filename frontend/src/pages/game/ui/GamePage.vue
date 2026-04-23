@@ -1,14 +1,45 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, ref, watch, type Ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/vue-query'
 import { authApi } from '@/shared/api/auth'
 import { gameApi, type FinishAttemptResponse } from '@/shared/api/game'
 import { useGame, VictoryModal } from '@/features/blockbust'
 import { BATTLEPASS_QUERY_KEY } from '@/features/battlepass'
-import { WIN_SCORE } from '@/entities/game'
 import { GameBoard } from '@/widgets/game-board'
 import { useUserStore } from '@/entities/user'
+
+function useAnimatedNumber(source: Ref<number>, duration = 450) {
+  const displayed = ref(source.value)
+  let rafId: number | null = null
+  let startTime: number | null = null
+  let from = source.value
+  let to = source.value
+
+  watch(source, (newVal) => {
+    from = displayed.value
+    to = newVal
+    startTime = null
+    if (rafId !== null) cancelAnimationFrame(rafId)
+
+    function step(ts: number) {
+      if (startTime === null) startTime = ts
+      const t = Math.min((ts - startTime) / duration, 1)
+      const eased = 1 - Math.pow(1 - t, 3)
+      displayed.value = Math.round(from + (to - from) * eased)
+      if (t < 1) {
+        rafId = requestAnimationFrame(step)
+      } else {
+        displayed.value = to
+        rafId = null
+      }
+    }
+
+    rafId = requestAnimationFrame(step)
+  })
+
+  return displayed
+}
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -24,6 +55,7 @@ const meQuery = useQuery({
 })
 
 const game = useGame()
+const animatedScore = useAnimatedNumber(game.score)
 
 const errorMsg = ref<string | null>(null)
 const finishResult = ref<FinishAttemptResponse | null>(null)
@@ -115,9 +147,17 @@ const showModal = computed(
       </div>
     </header>
 
-    <div class="w-full max-w-md mb-4 text-brand-dark/60 font-main text-sm">
-      Попытки: <span class="text-brand-dark font-semibold">{{ attemptsRemaining }}/3</span>
+    <div class="w-full max-w-md mb-2 flex items-center justify-between text-brand-dark/60 font-main text-sm">
+      <span>Попытки: <span class="text-brand-dark font-semibold">{{ attemptsRemaining }}/3</span></span>
+      <span v-if="game.status.value !== 'idle'">Очки: <span class="text-brand-dark font-semibold">{{ animatedScore }}</span></span>
     </div>
+    <div v-if="game.status.value !== 'idle'" class="w-full max-w-md mb-4 h-2 bg-brand-dark/10 rounded-full overflow-hidden">
+      <div
+        class="h-full bg-brand-primary transition-all duration-300"
+        :style="{ width: `${game.progress.value}%` }"
+      ></div>
+    </div>
+    <div v-else class="mb-4"></div>
 
     <div
       v-if="game.status.value === 'idle'"
