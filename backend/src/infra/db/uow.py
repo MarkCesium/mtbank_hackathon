@@ -4,7 +4,11 @@ from typing import Self
 
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from src.infra.db.repositories import RefreshTokenRepository, UserRepository
+from src.infra.db.repositories import (
+    BattlepassActivationRepository,
+    RefreshTokenRepository,
+    UserRepository,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -25,6 +29,7 @@ class UnitOfWork(AbstractAsyncContextManager["UnitOfWork"]):
         self._session = self.session_factory()
         self.user_repository = UserRepository(self.session)
         self.refresh_token_repository = RefreshTokenRepository(self.session)
+        self.battlepass_activation_repository = BattlepassActivationRepository(self.session)
         return self
 
     async def commit(self) -> None:

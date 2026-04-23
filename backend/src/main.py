@@ -11,10 +11,17 @@ from src.api import api_router
 from src.api.exception_handlers import register_exception_handlers
 from src.api.utils import generate_openapi_file
 from src.core.config import settings
-from src.dependencies import AuthServiceProvider, ConfigProvider, DBProvider, GameServiceProvider
+from src.dependencies import (
+    AuthServiceProvider,
+    BattlepassServiceProvider,
+    ConfigProvider,
+    DBProvider,
+    GameServiceProvider,
+)
 
 container = make_async_container(
     AuthServiceProvider(),
+    BattlepassServiceProvider(),
     ConfigProvider(),
     DBProvider(),
     GameServiceProvider(),
