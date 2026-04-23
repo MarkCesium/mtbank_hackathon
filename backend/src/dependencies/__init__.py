@@ -3,6 +3,7 @@ from .battlepass import BattlepassServiceProvider
 from .config import ConfigProvider
 from .db import DBProvider
 from .game import GameServiceProvider
+from .shop import ShopServiceProvider
 
 __all__ = (
     "AuthServiceProvider",
@@ -10,4 +11,5 @@ __all__ = (
     "ConfigProvider",
     "DBProvider",
     "GameServiceProvider",
+    "ShopServiceProvider",
 )

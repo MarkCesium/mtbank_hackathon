@@ -22,3 +22,8 @@ class InvalidCredentialsError(AppError):
 class DailyLimitExceededError(AppError):
     def __init__(self, message: str = "Daily attempts limit exceeded"):
         super().__init__(message)
+
+
+class ValidationError(AppError):
+    def __init__(self, message: str = "Validation failed"):
+        super().__init__(message)

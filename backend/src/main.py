@@ -17,6 +17,7 @@ from src.dependencies import (
     ConfigProvider,
     DBProvider,
     GameServiceProvider,
+    ShopServiceProvider,
 )
 
 container = make_async_container(
@@ -25,6 +26,7 @@ container = make_async_container(
     ConfigProvider(),
     DBProvider(),
     GameServiceProvider(),
+    ShopServiceProvider(),
 )
 
 

@@ -8,6 +8,7 @@ from src.core.exceptions import (
     DailyLimitExceededError,
     InvalidCredentialsError,
     NotFoundError,
+    ValidationError,
 )
 
 logger = logging.getLogger(__name__)
@@ -45,6 +46,13 @@ def register_exception_handlers(app: FastAPI) -> None:
     ) -> JSONResponse:
         return JSONResponse(
             status_code=429,
+            content={"detail": exc.message},
+        )
+
+    @app.exception_handler(ValidationError)
+    async def validation_error_handler(request: Request, exc: ValidationError) -> JSONResponse:
+        return JSONResponse(
+            status_code=400,
             content={"detail": exc.message},
         )
 
