@@ -6,6 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from src.infra.db.repositories import (
     BattlepassActivationRepository,
+    FriendshipRepository,
     PurchaseRepository,
     RefreshTokenRepository,
     ShopItemRepository,
@@ -34,6 +35,7 @@ class UnitOfWork(AbstractAsyncContextManager["UnitOfWork"]):
         self.battlepass_activation_repository = BattlepassActivationRepository(self.session)
         self.shop_item_repository = ShopItemRepository(self.session)
         self.purchase_repository = PurchaseRepository(self.session)
+        self.friendship_repository = FriendshipRepository(self.session)
         return self
 
     async def commit(self) -> None:
