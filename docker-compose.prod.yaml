@@ -1,7 +1,47 @@
 services:
+  traefik:
+    container_name: traefik
+    image: traefik:v3.5
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./config/traefik/traefik.yaml:/etc/traefik/traefik.yaml:ro
+      - traefik-certs:/etc/traefik/acme
+    networks:
+      - app-net
+
+  database:
+    restart: unless-stopped
+
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    restart: unless-stopped
     volumes:
       - ./var/backend:/app/var/app
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mtbank-api.rule=Host(`mtbank.csmmark.me`) && (PathPrefix(`/api/`) || PathPrefix(`/docs`) || Path(`/openapi.json`))"
+      - "traefik.http.routers.mtbank-api.entrypoints=websecure"
+      - "traefik.http.routers.mtbank-api.tls.certresolver=letsencrypt"
+      - "traefik.http.services.mtbank-api.loadbalancer.server.port=8000"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mtbank-frontend.rule=Host(`mtbank.csmmark.me`)"
+      - "traefik.http.routers.mtbank-frontend.entrypoints=websecure"
+      - "traefik.http.routers.mtbank-frontend.tls.certresolver=letsencrypt"
+      - "traefik.http.services.mtbank-frontend.loadbalancer.server.port=80"
+      - "traefik.http.routers.mtbank-frontend.priority=1"
+
+volumes:
+  traefik-certs:
