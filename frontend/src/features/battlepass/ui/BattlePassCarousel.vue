@@ -19,13 +19,6 @@ const progressPct = computed(() => {
   return (completedCount.value / state.value.month_days_count) * 100
 })
 
-const daysRemaining = computed(() => {
-  if (!state.value) return 0
-  // state.month is 1-indexed; new Date(year, month, 1) = first day of next month
-  const endOfMonth = new Date(state.value.year, state.value.month, 1)
-  return Math.max(0, Math.ceil((endOfMonth.getTime() - Date.now()) / 86_400_000))
-})
-
 function scrollToToday() {
   const container = carouselRef.value
   if (!container) return
@@ -67,14 +60,6 @@ watch(
           Проходи игру каждый день и получай награды!<br>
           Пропустишь день — бонусы сгорают до конца месяца.
         </p>
-      </div>
-      <div v-if="state" class="text-right shrink-0">
-        <div class="text-brand-dark/40 font-main text-[9px] uppercase tracking-wide leading-tight">
-          До конца<br>месяца
-        </div>
-        <div class="text-brand-primary font-digital font-bold text-lg mt-0.5 leading-none">
-          {{ daysRemaining }}&thinsp;дн.
-        </div>
       </div>
     </div>
 
