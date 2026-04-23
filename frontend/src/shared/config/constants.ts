@@ -2,7 +2,7 @@ export const BRAND_COLORS = {
   primary: '#0021F3',
   secondary: '#F84B36',
   dark: '#071d49',
-  gray: '#BBBBBB',
+  gray: '#f3f5fb',
   white: '#FFFFFF',
   black: '#010615'
 } as const
