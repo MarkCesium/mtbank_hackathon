@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { BattlePassDay } from '@/entities/battlepass'
-import { rewardIcon } from '@/entities/battlepass'
+import { rewardIcon, rewardIconColor } from '@/entities/battlepass'
 
 interface Props {
   day: BattlePassDay
@@ -52,11 +52,15 @@ const stateColor = computed(() => {
       class="bg-brand-white rounded-2xl max-w-sm w-full p-6 flex flex-col items-center gap-4 shadow-2xl"
     >
       <div class="flex items-center gap-2 text-brand-gray font-main text-sm">
-        <span>День</span>
+        <span class="font-main text-brand-black text-xl">День</span>
         <span class="font-digital text-brand-black text-xl">{{ day.day }}</span>
       </div>
 
-      <div class="text-6xl leading-none">{{ rewardIcon(day.reward_type) }}</div>
+      <component
+        :is="rewardIcon(day.reward_type)"
+        class="w-16 h-16"
+        :class="rewardIconColor(day.reward_type)"
+      />
 
       <h3 class="text-2xl font-accent text-brand-black text-center">
         {{ day.reward_title }}

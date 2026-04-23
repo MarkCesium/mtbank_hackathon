@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { Lock } from '@lucide/vue'
 import type { BattlePassDay } from '@/entities/battlepass'
-import { rewardIcon, isMilestone, isGrandPrize } from '@/entities/battlepass'
+import { rewardIcon, rewardIconColor, isMilestone, isGrandPrize } from '@/entities/battlepass'
 
 interface Props {
   day: BattlePassDay
@@ -88,10 +89,14 @@ const widthClass = computed(() =>
         <span class="text-brand-dark/40 font-semibold text-base leading-none">✕</span>
       </template>
       <template v-else-if="day.state === 'locked'">
-        <span class="text-base leading-none">🔒</span>
+        <Lock class="w-4 h-4 text-brand-dark/40" />
       </template>
       <template v-else>
-        <span class="text-xl leading-none select-none">{{ rewardIcon(day.reward_type) }}</span>
+        <component
+          :is="rewardIcon(day.reward_type)"
+          class="w-5 h-5"
+          :class="rewardIconColor(day.reward_type)"
+        />
       </template>
     </div>
 
