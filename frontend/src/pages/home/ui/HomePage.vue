@@ -28,56 +28,43 @@ function logout() {
 </script>
 
 <template>
-  <div class="min-h-[100dvh] bg-brand-dark flex flex-col items-center p-6">
-    <header class="w-full max-w-md flex items-center justify-between">
-      <h1 class="text-brand-white font-accent text-2xl">MTBank</h1>
-      <button
-        class="text-brand-gray hover:text-brand-white text-sm font-main transition"
-        @click="logout"
-      >
-        Выйти
-      </button>
+  <div class="min-h-[100dvh] bg-brand-gray flex flex-col items-center p-6">
+    <header class="w-full max-w-md flex flex-col gap-4">
+      <div class="flex items-center justify-between">
+        <h1 class="text-brand-dark font-accent text-2xl">MTBank</h1>
+        <button
+          class="text-brand-dark/50 hover:text-brand-dark text-sm font-main transition"
+          @click="logout"
+        >
+          Выйти
+        </button>
+      </div>
+      <BattlePassCarousel class="w-full" />
     </header>
 
     <main
       class="flex-1 w-full max-w-md flex flex-col items-center justify-center gap-6 text-center"
     >
-      <div v-if="meQuery.data.value" class="flex flex-col items-center gap-1">
-        <p class="text-brand-gray font-main text-sm">Привет,</p>
-        <p class="text-brand-white font-main text-xl font-semibold">
-          {{ meQuery.data.value.username }}
-        </p>
-      </div>
-
       <div
-        class="bg-brand-white/5 border border-brand-white/10 rounded-2xl p-5 w-full flex items-center justify-around"
+        class="bg-brand-white rounded-2xl p-5 w-full flex items-center justify-around shadow-sm"
       >
         <div class="flex flex-col items-center">
-          <span class="text-brand-gray font-main text-xs uppercase tracking-wide">Бонусы</span>
+          <span class="text-brand-dark/50 font-main text-xs uppercase tracking-wide">Бонусы</span>
           <span class="text-brand-secondary font-digital text-3xl mt-1">
             {{ meQuery.data.value?.bonus ?? '0.00' }}
           </span>
         </div>
-        <div class="w-px h-10 bg-brand-white/10"></div>
+        <div class="w-px h-10 bg-brand-gray/50"></div>
         <div class="flex flex-col items-center">
-          <span class="text-brand-gray font-main text-xs uppercase tracking-wide">Попытки</span>
-          <span class="text-brand-white font-digital text-3xl mt-1">
+          <span class="text-brand-dark/50 font-main text-xs uppercase tracking-wide">Попытки</span>
+          <span class="text-brand-dark font-digital text-3xl mt-1">
             {{ meQuery.data.value?.attempts_remaining ?? 0 }}/3
           </span>
         </div>
       </div>
 
-      <BattlePassCarousel class="w-full mt-2" />
-
-      <div class="flex flex-col items-center gap-3 mt-4">
-        <h2 class="text-brand-white font-accent text-4xl">BlockBust</h2>
-        <p class="text-brand-gray font-main text-sm max-w-xs">
-          Очищай ряды и столбцы. Набери 1000 очков и получи бонус.
-        </p>
-      </div>
-
       <button
-        class="bg-brand-primary hover:bg-brand-primary/90 disabled:bg-brand-gray/40 disabled:cursor-not-allowed text-brand-white font-main font-semibold px-10 py-3 rounded-xl transition"
+        class="bg-brand-primary hover:bg-brand-primary/90 disabled:bg-brand-gray/40 disabled:cursor-not-allowed text-brand-white font-main font-semibold px-10 py-3 rounded-xl transition w-full"
         :disabled="(meQuery.data.value?.attempts_remaining ?? 0) === 0"
         @click="goGame"
       >
@@ -85,7 +72,7 @@ function logout() {
       </button>
       <p
         v-if="(meQuery.data.value?.attempts_remaining ?? 0) === 0"
-        class="text-brand-gray text-xs font-main"
+        class="text-brand-dark/50 text-xs font-main -mt-4"
       >
         На сегодня попытки закончились.
       </p>
