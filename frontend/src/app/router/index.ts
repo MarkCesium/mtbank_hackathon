@@ -5,6 +5,7 @@ import { HomePage } from '@/pages/home'
 import { GamePage } from '@/pages/game'
 import { ShopPage } from '@/pages/shop'
 import { FriendsPage } from '@/pages/friends'
+import { PetPage } from '@/pages/pet'
 import MainLayout from '@/shared/ui/layouts/MainLayout.vue'
 
 const router = createRouter({
@@ -20,6 +21,7 @@ const router = createRouter({
         { path: '', name: 'home', component: HomePage },
         { path: 'shop', name: 'shop', component: ShopPage },
         { path: 'friends', name: 'friends', component: FriendsPage },
+        { path: 'pet', name: 'pet', component: PetPage },
       ],
     },
     { path: '/game', name: 'game', component: GamePage, meta: { requiresAuth: true } },

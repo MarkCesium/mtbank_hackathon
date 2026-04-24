@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-import { Home, ShoppingBag, Users } from '@lucide/vue'
+import { Home, PawPrint, ShoppingBag, Users } from '@lucide/vue'
 
 const route = useRoute()
 
@@ -8,6 +8,7 @@ const navItems = [
   { to: '/', label: 'Главная', icon: Home },
   { to: '/shop', label: 'Магазин', icon: ShoppingBag },
   { to: '/friends', label: 'Друзья', icon: Users },
+  { to: '/pet', label: 'Питомец', icon: PawPrint },
 ]
 
 function isActive(path: string): boolean {
@@ -23,7 +24,7 @@ function isActive(path: string): boolean {
         v-for="item in navItems"
         :key="item.to"
         :to="item.to"
-        class="flex flex-col items-center gap-1 px-4 py-1 rounded-xl transition-colors transition-transform duration-100 active:scale-90"
+        class="flex flex-col items-center gap-1 px-2 py-1 rounded-xl transition-colors transition-transform duration-100 active:scale-90"
         :class="isActive(item.to) ? 'text-brand-primary' : 'text-brand-dark/40'"
       >
         <component :is="item.icon" class="w-5 h-5" />
