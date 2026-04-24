@@ -22,7 +22,7 @@ function handleSubmit() {
         autocomplete="email"
         required
         placeholder="example@mail.com"
-        class="border border-brand-gray/60 rounded-xl px-3 py-2.5 sm:px-4 sm:py-3 text-sm sm:text-base text-brand-black placeholder:text-brand-gray focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition-colors"
+        class="border border-brand-gray/60 rounded-xl px-3 py-2.5 sm:px-4 sm:py-3 text-sm sm:text-base text-brand-black placeholder:text-brand-black/40 focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition-colors"
       />
     </div>
 
@@ -34,7 +34,7 @@ function handleSubmit() {
         autocomplete="current-password"
         required
         placeholder="Введите пароль"
-        class="border border-brand-gray/60 rounded-xl px-3 py-2.5 sm:px-4 sm:py-3 text-sm sm:text-base text-brand-black placeholder:text-brand-gray focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition-colors"
+        class="border border-brand-gray/60 rounded-xl px-3 py-2.5 sm:px-4 sm:py-3 text-sm sm:text-base text-brand-black placeholder:text-brand-black/40 focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition-colors"
       />
     </div>
 
