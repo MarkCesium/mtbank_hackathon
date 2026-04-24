@@ -5,11 +5,12 @@ Revises: c6d7e8f9a0b1
 Create Date: 2026-04-24 05:08:18.075201
 
 """
+
 from collections.abc import Sequence
 
 # revision identifiers, used by Alembic.
-revision: str = '4a8d2005099e'
-down_revision: str | None = 'c6d7e8f9a0b1'
+revision: str = "4a8d2005099e"
+down_revision: str | None = "c6d7e8f9a0b1"
 branch_labels: str | Sequence[str] | None = None
 depends_on: str | Sequence[str] | None = None
 
