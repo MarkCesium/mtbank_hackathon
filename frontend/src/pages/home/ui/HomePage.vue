@@ -26,7 +26,7 @@ function goGame() {
 </script>
 
 <template>
-  <div class="flex-1 w-full flex flex-col gap-2">
+  <div class="flex-1 w-full flex flex-col gap-4">
     <BattlePassCarousel class="w-full" />
 
     <main class="flex-1 w-full flex flex-col items-center justify-start gap-4 text-center">
